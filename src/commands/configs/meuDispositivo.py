@@ -6,14 +6,9 @@ import psutil;
 pid = os.getpid()
 py = psutil.Process(pid)
 
-def secs2hours(secs):
-    mm, ss = divmod(secs, 60)
-    hh, mm = divmod(mm, 60)
-    return "%d:%02d:%02d" % (hh, mm, ss)
-
 battery = psutil.sensors_battery()
 
-batteryResume = "\033[1;32m%s%%\033[0;0m, tempo restante: %s" % (battery.percent, secs2hours(battery.secsleft))
+batteryResume = f"\033[1;32m{battery.percent}\033[0;0m"
 
 message = f'''
             nome de usuario: {os.getlogin()}
@@ -22,7 +17,7 @@ message = f'''
             psycal memoria use: {psutil.virtual_memory()}
             net stats: {psutil.net_if_stats()}
             rede: {psutil.net_io_counters()}
-            bateria: {batteryResume}
+            bateria: {batteryResume}🔋
             other: {psutil.cpu_times()}
         '''
 def run():
