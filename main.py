@@ -18,6 +18,10 @@ except:
         print('Falta de repositório GIT local')
 clear();
 
+def restart():
+    python = sys.executable
+    os.execl(python, python, *sys.argv)
+
 CommandsList = start("./src/commands");
 
 def printLogo():
@@ -35,11 +39,6 @@ def formatMessage():
         message += f'\033[1;91m[\033[0;0m{i + 1}\033[1;91m]\033[0;0m {command}\n'
         i += 1
     return message;
-
-
-def restart():
-    python = sys.executable
-    os.execl(python, python, *sys.argv)
 
 def CeckChoice(message):
     choice = selfInput(message);
