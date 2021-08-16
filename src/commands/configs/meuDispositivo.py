@@ -6,10 +6,6 @@ import psutil;
 pid = os.getpid()
 py = psutil.Process(pid)
 
-battery = psutil.sensors_battery()
-
-batteryResume = f"\033[1;32m{battery.percent}\033[0;0m"
-
 message = f'''
             nome de usuario: {os.getlogin()}
             cpu usada: {psutil.cpu_percent(interval=1)}
@@ -17,7 +13,6 @@ message = f'''
             psycal memoria use: {psutil.virtual_memory()}
             net stats: {psutil.net_if_stats()}
             rede: {psutil.net_io_counters()}
-            bateria: {batteryResume}🔋
             other: {psutil.cpu_times()}
         '''
 def run():

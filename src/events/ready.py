@@ -29,7 +29,7 @@ def start(param):
         if not path[-3::] == '.py':
             
             folders.append(path);
-            print(f'\n\033[0;0m\033[1;34mᆫ {path}\033[1;94m');
+            print(f'\n\033[0;0m\033[1;34m  ┗ {path}\033[1;94m');
 
             for file in listdir(param + '/' + path):
                 if file[-3::] == '.py':
@@ -43,7 +43,7 @@ def start(param):
                     }
 
                     files.append(object);
-                    print(f'    ᆫ  {file}');
+                    print(f'      ┗ {file}');
 
     print(f'\n\033[1;92m[i]\033[0;0m Eu achei {len(folders)} pastas e {len(files)} arquivos .py');
 
