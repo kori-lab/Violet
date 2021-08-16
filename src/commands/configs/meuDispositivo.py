@@ -13,7 +13,6 @@ message = f'''
             psycal memoria use: {psutil.virtual_memory()}
             net stats: {psutil.net_if_stats()}
             rede: {psutil.net_io_counters()}
-            other: {psutil.cpu_times()}
         '''
 def run():
     Sair = False;
