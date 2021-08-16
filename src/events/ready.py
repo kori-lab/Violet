@@ -1,6 +1,5 @@
 from os import listdir, system, name;
 from importlib import import_module;
-import os, subprocess;
 
 def clear():
     system('cls' if name == 'nt' else 'clear');

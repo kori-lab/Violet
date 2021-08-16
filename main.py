@@ -1,6 +1,7 @@
 from src.utils.functions.clear import *
 from src.events.ready import *;
 from src.utils.functions.selfInput import *;
+from src.utils.functions.printLogo import *;
 import os, subprocess, sys
 
 try:
@@ -22,30 +23,19 @@ def restart():
     python = sys.executable
     os.execl(python, python, *sys.argv)
 
-def restart():
-    python = sys.executable
-    os.execl(python, python, *sys.argv)
-
 try:
-	import psutil
+	import requests
 except:
     choice = selfInput(f'Você deve baixar alguns modulos, digite 1 para baixa-los.')
     if choice == '1':
         os.system("apt install figlet curl -y")
         os.system('python3 -m pip install --upgrade pip')
-        os.system('pip3 install psutil')
+        os.system('pip3 install requests')
     else:
-        print(f'Ok, instale por si ou isso é um adeus.');exit()
+        print(f'Ok, instale por si ou não dará para rodar a aplicação...');exit()
     restart()
 
 CommandsList = start("./src/commands");
-
-def printLogo():
-    ref_arquivo = open("logo.txt","r")
-
-    print('\033[1;31m'+ ref_arquivo.read() +'\033[0;0m\n')
-
-    ref_arquivo.close()
 
 def formatMessage():
     message = ''

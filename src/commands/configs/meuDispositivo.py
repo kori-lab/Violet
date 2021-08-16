@@ -5,20 +5,20 @@ import os;
 pid = os.getpid()
 
 message = f'''
-            nome de usuario: {os.getlogin()}
-        '''
+            Nome de usuário: {os.getlogin()}
+        ''';
+
 def run():
     Sair = False;
     while(Sair == False):
         clear();
     
         try:
-            print(message)
+            print(message);
         except:
-            a = 0;
+            return;
 
-        choice = selfInput('Aperte enter para ir ao menu...');
+        choice = selfInput('Aperte enter para ir ao menu...\n');
         
-        if True:
-            clear();
-            Sair = True;
+        clear();
+        Sair = True;
