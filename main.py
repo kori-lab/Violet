@@ -1,8 +1,7 @@
 from src.utils.functions.clear import *
 from src.events.ready import *;
 from src.utils.functions.selfInput import *;
-import os, subprocess
-CommandsList = start("./src/commands");
+import os, subprocess, sys
 
 try:
     if __name__ == '__main__':
@@ -17,7 +16,9 @@ except:
             pass
     else:
         print('Falta de repositório GIT local')
-    clear();
+clear();
+
+CommandsList = start("./src/commands");
 
 def printLogo():
     ref_arquivo = open("logo.txt","r")
@@ -39,9 +40,6 @@ def formatMessage():
 def restart():
     python = sys.executable
     os.execl(python, python, *sys.argv)
-
-import os,sys,time,json,subprocess,platform
-
 
 def CeckChoice(message):
     choice = selfInput(message);
