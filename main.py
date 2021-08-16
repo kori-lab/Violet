@@ -41,6 +41,7 @@ def CeckChoice(message):
 
     elif True:
         CommandsList[int(choice) - 1]['run']();
+        printLogo()
 
 
 message = formatMessage();
