@@ -8,7 +8,6 @@ py = psutil.Process(pid)
 
 message = f'''
             nome de usuario: {os.getlogin()}
-            cpu usada: {psutil.cpu_percent(interval=1)}
             memoria usada: {py.memory_info()[0]/2.**30}
             psycal memoria use: {psutil.virtual_memory()}
             net stats: {psutil.net_if_stats()}
