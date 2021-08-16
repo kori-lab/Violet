@@ -1,5 +1,6 @@
 from os import listdir, system, name;
 from importlib import import_module;
+import os, subprocess;
 
 def clear():
     system('cls' if name == 'nt' else 'clear');
@@ -17,7 +18,20 @@ def resumeFileName(fileName):
     return result.capitalize();
 
 def start(param):
-    clear();
+    try:
+        if __name__ == '__main__':
+            print('Buscando atualizações...')
+            update = subprocess.check_output('git pull', shell=True)
+        if 'Already up to date' not in update.decode():
+            print('Atualização instalada.')
+        else:
+            print(f'[i] Nenhuma atualizacao disponivel.')
+    except:
+        if os.path.exists('.git'):
+            pass
+    else:
+        print('Falta de repositório GIT local')
+    # clear();
     print ('\033[1;32m[/]\033[0;0m Inicando a aplição mestre, aguarde... 🍙');
 
     folders = [];

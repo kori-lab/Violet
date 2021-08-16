@@ -1,7 +1,7 @@
 from src.utils.functions.clear import *
 from src.events.ready import *;
 from src.utils.functions.selfInput import *;
-import subprocess, os
+import os
 CommandsList = start("./src/commands");
 
 def printLogo():
@@ -26,31 +26,7 @@ def restart():
     os.execl(python, python, *sys.argv)
 
 import os,sys,time,json,subprocess,platform
-try:
-	import requests,random,json,phonenumbers
-except:
-    choice = input(f'Vejo que é sua primeira vez aqui,\n Deseja instalar o software necessário?\n1-Sim\n2-Não\n_')
-    if choice:
-        os.system("apt install figlet curl -y")
-        os.system('python3 -m pip install --upgrade pip')
-        os.system('pip3 install requests pytube phonenumbers')
-    else:
-        print(f'Ok,instale por si ou isso é um adeus.');exit()
-    restart()
 
-try:
-    if __name__ == '__main__':
-        print('Buscando atualizações...')
-        update = subprocess.check_output('git pull', shell=True)
-        if 'Already up to date' not in update.decode():
-            print('Atualização instalada.')
-        else:
-            print(f'[i] Nenhuma atualizacao disponivel.')
-except:
-    if os.path.exists('.git'):
-        pass
-    else:
-        print('Falta de repositório GIT local')
 
 def CeckChoice(message):
     choice = selfInput(message);
