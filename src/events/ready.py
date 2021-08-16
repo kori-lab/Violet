@@ -31,8 +31,8 @@ def start(param):
             pass
     else:
         print('Falta de repositório GIT local')
-    # clear();
-    print ('\033[1;32m[/]\033[0;0m Inicando a aplição mestre, aguarde... 🍙');
+    clear();
+    print ('\033[1;32m[/]\033[0;0m Inicando a aplição mestre, aguarde...');
 
     folders = [];
     files = [];
