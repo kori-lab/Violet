@@ -22,10 +22,21 @@ def restart():
     python = sys.executable
     os.execl(python, python, *sys.argv)
 
+def restart():
+    python = sys.executable
+    os.execl(python, python, *sys.argv)
+
 try:
 	import psutil
 except:
-	system('python3 -m pip install --upgrade pip && pip3 install -r requirements.txt');restart()
+    choice = selfInput(f'Você deve baixar alguns modulos, digite 1 para baixa-los.')
+    if choice == '1':
+        os.system("apt install figlet curl -y")
+        os.system('python3 -m pip install --upgrade pip')
+        os.system('pip3 install requests psutil')
+    else:
+        print(f'Ok, instale por si ou isso é um adeus.');exit()
+    restart()
 
 CommandsList = start("./src/commands");
 
