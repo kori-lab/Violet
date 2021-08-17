@@ -44,6 +44,9 @@ def formatMessage():
         command = command['name']
         message += f'\033[1;91m[\033[0;0m{i + 1}\033[1;91m]\033[0;0m {command}\n'
         i += 1
+
+    message += f'\n\033[1;91m[\033[0;0m0\033[1;91m]\033[0;0m Sair\n'
+
     return message;
 
 def CeckChoice(message):
@@ -56,6 +59,10 @@ def CeckChoice(message):
     if int(choice) > len(CommandsList):
         printLogo();
         return print('Digite um número da lista!')
+
+    elif choice == '0':
+        clear();
+        os.sys.exit();
 
     elif True:
         CommandsList[int(choice) - 1]['run']();
