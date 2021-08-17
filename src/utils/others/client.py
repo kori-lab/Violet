@@ -1,4 +1,6 @@
 import socket, threading
+from src.utils.functions.randomColor import *
+from src.utils.functions.selfInput import *
 
 def handle_messages(connection: socket.socket):
     '''
@@ -13,7 +15,7 @@ def handle_messages(connection: socket.socket):
             # so the connection will be closed and an error will be displayed.
             # If not, it will try to decode message in order to show to user.
             if msg:
-                print(msg.decode())
+                print("\n"+ msg.decode())
             else:
                 connection.close()
                 break
@@ -38,26 +40,24 @@ def client() -> None:
         socket_instance.connect((SERVER_ADDRESS, SERVER_PORT))
         # Create a thread in order to handle messages sent by server
         threading.Thread(target=handle_messages, args=[socket_instance]).start()
-
-        print('Connected to chat!')
-
+        name = selfInput('\nQual é seu nome?').capitalize()
+        print('\nConectado no chat! digite sair para sair do chat...')
+        name = f'{randomColor(name)}\033[0;0m'
         # Read user's input until it quit from chat and close connection
         while True:
-            msg = input()
+            msg = input('Send: ')
 
-            if msg == 'quit':
+            if msg == 'sair':
                 break
 
             # Parse message to utf-8
+            msg = f"{name} - {msg}"
             socket_instance.send(msg.encode())
 
         # Close connection with the server
         socket_instance.close()
 
     except Exception as e:
-        print(f'Error connecting to server socket {e}')
+        print(f'Erro ao se conectar no servidor: {e}')
         socket_instance.close()
 
-
-if __name__ == "__main__":
-    client()

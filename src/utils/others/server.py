@@ -17,10 +17,10 @@ def handle_user_connection(connection: socket.socket, address: str) -> None:
             # so in this case, we need to close connection and remove it from connections list.
             if msg:
                 # Log message sent by user
-                print(f'{address[0]}:{address[1]} - {msg.decode()}')
+                print(f'{msg.decode()}')
                 
                 # Build message format and broadcast to users connected on server
-                msg_to_send = f'From {address[0]}:{address[1]} - {msg.decode()}'
+                msg_to_send = f'{msg.decode()}'
                 broadcast(msg_to_send, connection)
 
             # Close connection if no message was sent
@@ -79,7 +79,7 @@ def server() -> None:
         socket_instance.bind(('', LISTENING_PORT))
         socket_instance.listen(4)
 
-        print('Server running!')
+        print('Server está ligado!')
         
         while True:
 
@@ -92,7 +92,7 @@ def server() -> None:
             threading.Thread(target=handle_user_connection, args=[socket_connection, address]).start()
 
     except Exception as e:
-        print(f'An error has occurred when instancing socket: {e}')
+        print(f'Ocorreu um erro ao instanciar socket: {e}')
     finally:
         # In case of any problem we clean all connections and close the server connection
         if len(connections) > 0:
@@ -100,7 +100,3 @@ def server() -> None:
                 remove_connection(conn)
 
         socket_instance.close()
-
-
-if __name__ == "__main__":
-    server()

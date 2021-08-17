@@ -8,20 +8,27 @@ def run():
     Sair = False;
     while(Sair == False):
         clear();
-        _input = input('\033[1;32m[?]\033[0;0m Escolha uma opção.\n[1] client \n[2] host do server');
+        _input = input('\033[1;32m[?]\033[0;0m Escolha uma opção.\n\n\033[1;92m[1]\033[0;0m client \n\033[1;92m[2]\033[0;0m host do server\n\n\033[1;92m>\033[0;0m ');
 
         try:
-            print(f'\n\033[1;32m{_input}\033[0;0m\n')
+            if _input == '1':
+                clear()
+                client()
+
+            elif _input == '2':
+                clear()
+                server()
         except:
             return;
 
-        choice = selfInput('\033[1;92m[1]\033[0;0m repetir\n\033[1;92m[2]\033[0;0m sair para menu\n');
+        choice = selfInput('\n\033[1;92m[1]\033[0;0m repetir\n\033[1;92m[2]\033[0;0m sair para menu\n');
 
         if choice == '1':
-            client()
+            pass
 
         elif choice == '2':
-            server()
+            clear()
+            Sair = True;
             
         else:
             print('opção invalida...');
