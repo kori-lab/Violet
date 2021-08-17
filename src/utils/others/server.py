@@ -5,7 +5,7 @@ connections = []
 def handle_user_connection(connection: socket.socket, address: str) -> None:
     while True:
         try:
-            msg = connection.recv(64)
+            msg = connection.recvfrom(64)
 
             if msg:
                 print(f'{msg.decode()}')
@@ -49,6 +49,7 @@ def server() -> None:
     
     try:
         socket_instance = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        socket_instance.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         socket_instance.bind((SERVER_ADDRESS, LISTENING_PORT))
         socket_instance.listen(4)
 

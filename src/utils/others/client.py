@@ -6,7 +6,7 @@ from src.utils.functions.clear import *
 def handle_messages(connection: socket.socket):
     while True:
         try:
-            msg = connection.recv(64)
+            msg = connection.recvfrom(64)
 
             if msg:
                 print(msg.decode())
@@ -44,7 +44,7 @@ def client() -> None:
                 break
 
             msg = f"\n{name} - {msg}"
-            socket_instance.send(msg.encode())
+            socket_instance.sendto(msg.encode(), (SERVER_ADDRESS, SERVER_PORT))
 
         socket_instance.close()
 
