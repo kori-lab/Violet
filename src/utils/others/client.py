@@ -6,10 +6,10 @@ from src.utils.functions.clear import *
 def handle_messages(connection: socket.socket):
     while True:
         try:
-            msg = connection.recv(64)
+            msg = connection.recv(1024).decode()
 
             if msg:
-                print(msg.decode())
+                print(msg)
             else:
                 connection.close()
                 break
@@ -21,8 +21,8 @@ def handle_messages(connection: socket.socket):
 
 def client() -> None:
     # localhost
-    SERVER_ADDRESS = selfInput('\nQual é o endereço do servidor?')
-    SERVER_PORT = 4545
+    SERVER_ADDRESS = socket.gethostbyname(socket.gethostname())
+    SERVER_PORT = 5000
 
     try:
         socket_instance = socket.socket()

@@ -5,12 +5,12 @@ connections = []
 def handle_user_connection(connection: socket.socket, address: str) -> None:
     while True:
         try:
-            msg = connection.recv(64)
+            msg = connection.recv(1024).decode()
 
             if msg:
-                print(f'\n{msg.decode()}')
+                print(f'\n{msg}')
                 
-                msg_to_send = f'{msg.decode()}'
+                msg_to_send = f'{msg}'
                 broadcast(msg_to_send, connection)
 
             else:
@@ -18,7 +18,7 @@ def handle_user_connection(connection: socket.socket, address: str) -> None:
                 break
 
         except Exception as e:
-            print(f'Error to handle user connection: {e}')
+            print(f'Erro ao lidar com a conexão do usuário: {e}')
             remove_connection(connection)
             break
 
@@ -44,12 +44,11 @@ def remove_connection(conn: socket.socket) -> None:
 
 def server() -> None:
 
-    SERVER_ADDRESS = ''
-    LISTENING_PORT = 4545
+    LISTENING_PORT = 5000
     
     try:
         socket_instance = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        socket_instance.bind((SERVER_ADDRESS, LISTENING_PORT))
+        socket_instance.bind(('', LISTENING_PORT))
         socket_instance.listen()
 
         print(f'Server está ligado!\nEndereço ip: {socket.gethostbyname(socket.gethostname())}')
