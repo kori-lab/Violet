@@ -51,7 +51,7 @@ def server() -> None:
         socket_instance.bind((SERVER_ADDRESS, LISTENING_PORT))
         socket_instance.listen()
 
-        print(f'Server está ligado!\nEndereço: {socket.gethostbyname()}')
+        print(f'Server está ligado!\nEndereço: {socket_instance}')
         
         while True:
             socket_connection, address = socket_instance.accept()

@@ -21,7 +21,7 @@ def handle_messages(connection: socket.socket):
 
 def client() -> None:
 
-    SERVER_ADDRESS = str(socket.gethostbyname())
+    SERVER_ADDRESS = selfInput('\nQual é o endereço do servidor?')
     SERVER_PORT = 4444
 
     try:
