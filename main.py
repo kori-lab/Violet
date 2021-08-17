@@ -62,9 +62,9 @@ def CeckChoice(message):
 
     elif choice == '0':
         clear();
-        os.sys.exit();
+        sys.exit();
 
-    elif True:
+    else:
         CommandsList[int(choice) - 1]['run']();
         printLogo()
 
