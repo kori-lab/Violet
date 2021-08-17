@@ -71,12 +71,13 @@ def server() -> None:
         to handle their messages
     '''
 
+    SERVER_ADDRESS = socket.gethostbyname(socket.gethostname())
     LISTENING_PORT = 5000
     
     try:
         # Create server and specifying that it can only handle 4 connections by time!
         socket_instance = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        socket_instance.bind(('', LISTENING_PORT))
+        socket_instance.bind((SERVER_ADDRESS, LISTENING_PORT))
         socket_instance.listen(4)
 
         print('Server está ligado!')
