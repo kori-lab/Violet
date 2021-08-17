@@ -24,7 +24,7 @@ def restart():
     os.execl(python, python, *sys.argv)
 
 try:
-	import requests, random, colorama;
+	import requests;
 except:
     choice = selfInput(f'Você deve baixar alguns modulos, digite 1 para baixa-los.')
     if choice == '1':
