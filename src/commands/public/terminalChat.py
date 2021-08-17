@@ -8,7 +8,7 @@ def run():
     Sair = False;
     while(Sair == False):
         clear();
-        _input = input('\033[1;32m[?]\033[0;0m Escolha uma opção.\n\n\033[1;92m[1]\033[0;0m client \n\033[1;92m[2]\033[0;0m host do server\n\n\033[1;92m>\033[0;0m ');
+        _input = input('\033[1;32m[#]\033[0;0m Escolha uma opção para se conectar.\n\n\033[1;92m[1]\033[0;0m client \n\033[1;92m[2]\033[0;0m host do server\n\n\033[1;92m>\033[0;0m ');
 
         try:
             if _input == '1':
@@ -20,7 +20,7 @@ def run():
                 server()
         except:
             return;
-
+        clear()
         choice = selfInput('\n\033[1;92m[1]\033[0;0m repetir\n\033[1;92m[2]\033[0;0m sair para menu\n');
 
         if choice == '1':

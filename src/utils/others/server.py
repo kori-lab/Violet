@@ -53,7 +53,7 @@ def remove_connection(conn: socket.socket) -> None:
 
 def server() -> None:
 
-    SERVER_ADDRESS = socket.gethostbyname(socket.gethostname())
+    SERVER_ADDRESS = ''
     LISTENING_PORT = 5050
     
     try:
@@ -61,7 +61,7 @@ def server() -> None:
         socket_instance.bind((SERVER_ADDRESS, LISTENING_PORT))
         socket_instance.listen()
 
-        print(f'Server está ligado!\nEndereço: {SERVER_ADDRESS}')
+        print(f'Server está ligado!\nEndereço: {socket.gethostbyname(socket.gethostname())}')
         
         while True:
             socket_connection, address = socket_instance.accept()
