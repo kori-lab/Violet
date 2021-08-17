@@ -71,7 +71,7 @@ def server() -> None:
         to handle their messages
     '''
 
-    LISTENING_PORT = 12000
+    LISTENING_PORT = 5000
     
     try:
         # Create server and specifying that it can only handle 4 connections by time!

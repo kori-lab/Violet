@@ -32,7 +32,7 @@ def client() -> None:
     '''
 
     SERVER_ADDRESS = '127.0.0.1'
-    SERVER_PORT = 12000
+    SERVER_PORT = 5000
 
     try:
         # Instantiate socket and start connection with server
@@ -42,6 +42,7 @@ def client() -> None:
         threading.Thread(target=handle_messages, args=[socket_instance]).start()
         name = selfInput('\nQual é seu nome?').capitalize()
         print('\nConectado no chat! digite sair para sair do chat...')
+        
         name = f'{randomColor(name)}\033[0;0m'
         # Read user's input until it quit from chat and close connection
         while True:
