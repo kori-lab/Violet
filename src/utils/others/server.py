@@ -24,7 +24,8 @@ def handle_user_connection(connection: socket.socket, address: str) -> None:
 
 
 def broadcast(message: str, connection: socket.socket) -> None:
-
+    if not message:
+        pass;
     for client_conn in connections:
         if client_conn != connection:
             try:
@@ -43,7 +44,7 @@ def remove_connection(conn: socket.socket) -> None:
 
 def server() -> None:
 
-    SERVER_ADDRESS = 'localhost'
+    SERVER_ADDRESS = ''
     LISTENING_PORT = 4545
     
     try:
@@ -51,7 +52,7 @@ def server() -> None:
         socket_instance.bind((SERVER_ADDRESS, LISTENING_PORT))
         socket_instance.listen(4)
 
-        print(f'Server está ligado!\nEndereço: {socket_instance}')
+        print(f'Server está ligado!\nEndereço: {socket.gethostname()}')
         
         while True:
             socket_connection, address = socket_instance.accept()
