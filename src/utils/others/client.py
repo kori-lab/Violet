@@ -4,10 +4,6 @@ from src.utils.functions.selfInput import *
 from src.utils.functions.clear import *
 
 def handle_messages(connection: socket.socket):
-    '''
-        Receive messages sent by the server and display them to user
-    '''
-
     while True:
         try:
             msg = connection.recv(64)
@@ -25,8 +21,8 @@ def handle_messages(connection: socket.socket):
 
 def client() -> None:
 
-    SERVER_ADDRESS = selfInput('\nQual é o endereço do servidor?')
-    SERVER_PORT = 5050
+    SERVER_ADDRESS = str(socket.gethostbyname())
+    SERVER_PORT = 4444
 
     try:
         socket_instance = socket.socket()

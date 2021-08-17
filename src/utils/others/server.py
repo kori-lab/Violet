@@ -1,16 +1,10 @@
 import socket, threading
 
-# Global variable that mantain client's connections
 connections = []
 
 def handle_user_connection(connection: socket.socket, address: str) -> None:
-    '''
-        Get user connection in order to keep receiving their messages and
-        sent to others users/connections.
-    '''
     while True:
         try:
-            # Get client message
             msg = connection.recv(64)
 
             if msg:
@@ -42,10 +36,6 @@ def broadcast(message: str, connection: socket.socket) -> None:
 
 
 def remove_connection(conn: socket.socket) -> None:
-    '''
-        Remove specified connection from connections list
-    '''
-
     if conn in connections:
         conn.close()
         connections.remove(conn)
@@ -54,14 +44,14 @@ def remove_connection(conn: socket.socket) -> None:
 def server() -> None:
 
     SERVER_ADDRESS = ''
-    LISTENING_PORT = 5050
+    LISTENING_PORT = 4444
     
     try:
         socket_instance = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         socket_instance.bind((SERVER_ADDRESS, LISTENING_PORT))
         socket_instance.listen()
 
-        print(f'Server está ligado!\nEndereço: {socket.gethostbyname(socket.gethostname())}')
+        print(f'Server está ligado!\nEndereço: {socket.gethostbyname()}')
         
         while True:
             socket_connection, address = socket_instance.accept()
