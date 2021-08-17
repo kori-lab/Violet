@@ -1,6 +1,7 @@
 import socket, threading
 from src.utils.functions.randomColor import *
 from src.utils.functions.selfInput import *
+from src.utils.functions.clear import *
 
 def handle_messages(connection: socket.socket):
     '''
@@ -31,8 +32,8 @@ def client() -> None:
         and handle it's input messages
     '''
 
-    SERVER_ADDRESS = '192.168.1.26'
-    SERVER_PORT = 5000
+    SERVER_ADDRESS = selfInput('\nQual é o endereço do servidor?')
+    SERVER_PORT = 5050
 
     try:
         # Instantiate socket and start connection with server
@@ -41,6 +42,7 @@ def client() -> None:
         # Create a thread in order to handle messages sent by server
         threading.Thread(target=handle_messages, args=[socket_instance]).start()
         name = selfInput('\nQual é seu nome?').capitalize()
+        clear()
         print('\nConectado no chat! digite sair para sair do chat...')
         
         name = f'{randomColor(name)}\033[0;0m'
