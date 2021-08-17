@@ -6,7 +6,7 @@ from src.utils.functions.clear import *
 def handle_messages(connection: socket.socket):
     while True:
         try:
-            msg = connection.recvfrom(64)
+            msg = connection.recv(64)
 
             if msg:
                 print(msg.decode())
@@ -32,7 +32,6 @@ def client() -> None:
         name = selfInput('\nQual é seu nome?').capitalize()
 
         clear();
-        print(socket.gethostname())
         print('\nConectado no chat! digite sair para sair do chat...')
         
         name = f'{randomColor(name)}\033[0;0m'
@@ -43,8 +42,8 @@ def client() -> None:
             if msg == 'sair':
                 break
 
-            msg = f"\n{name} - {msg}"
-            socket_instance.sendto(msg.encode(), (SERVER_ADDRESS, SERVER_PORT))
+            msg = f"{name} - {msg}"
+            socket_instance.send(msg.encode())
 
         socket_instance.close()
 

@@ -5,10 +5,10 @@ connections = []
 def handle_user_connection(connection: socket.socket, address: str) -> None:
     while True:
         try:
-            msg = connection.recvfrom(64)
+            msg = connection.recv(64)
 
             if msg:
-                print(f'{msg.decode()}')
+                print(f'\n{msg.decode()}')
                 
                 msg_to_send = f'{msg.decode()}'
                 broadcast(msg_to_send, connection)
@@ -49,11 +49,10 @@ def server() -> None:
     
     try:
         socket_instance = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        socket_instance.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         socket_instance.bind((SERVER_ADDRESS, LISTENING_PORT))
-        socket_instance.listen(4)
+        socket_instance.listen()
 
-        print(f'Server está ligado!\nEndereço: {socket.gethostname()}')
+        print(f'Server está ligado!\nEndereço ip: {socket.gethostbyname(socket.gethostname())}')
         
         while True:
             socket_connection, address = socket_instance.accept()
