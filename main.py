@@ -30,7 +30,7 @@ except:
     if choice == '1':
         os.system("apt install figlet curl -y")
         os.system('python3 -m pip install --upgrade pip')
-        os.system('pip3 install requests colorama random')
+        os.system('pip3 install requests')
     else:
         print(f'Ok, instale por si ou não dará para rodar a aplicação...');exit()
     restart()
