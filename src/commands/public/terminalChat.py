@@ -20,7 +20,7 @@ def run():
                 server()
         except:
             return;
-        clear()
+        
         choice = selfInput('\n\033[1;92m[1]\033[0;0m repetir\n\033[1;92m[2]\033[0;0m sair para menu\n');
 
         if choice == '1':
