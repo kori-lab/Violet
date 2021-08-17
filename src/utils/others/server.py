@@ -43,13 +43,13 @@ def remove_connection(conn: socket.socket) -> None:
 
 def server() -> None:
 
-    SERVER_ADDRESS = ''
-    LISTENING_PORT = 4444
+    SERVER_ADDRESS = 'localhost'
+    LISTENING_PORT = 4545
     
     try:
         socket_instance = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         socket_instance.bind((SERVER_ADDRESS, LISTENING_PORT))
-        socket_instance.listen()
+        socket_instance.listen(4)
 
         print(f'Server está ligado!\nEndereço: {socket_instance}')
         

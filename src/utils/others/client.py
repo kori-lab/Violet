@@ -20,9 +20,9 @@ def handle_messages(connection: socket.socket):
             break
 
 def client() -> None:
-
+    # localhost
     SERVER_ADDRESS = selfInput('\nQual é o endereço do servidor?')
-    SERVER_PORT = 4444
+    SERVER_PORT = 4545
 
     try:
         socket_instance = socket.socket()
