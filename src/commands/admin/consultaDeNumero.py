@@ -1,7 +1,7 @@
 from requests import get
 from src.utils.functions.selfInput import *
 from src.utils.functions.clear import *
-# "https://dualityapi.xyz/apis/flex_7/Consultas%20Privadas/HTML/numero.php?consulta="
+# https://dualityapi.xyz/apis/flex_7/Consultas%20Privadas/HTML/numero.php?consulta=
 
 def formatResponse(_res):
     _res = _res.replace('\n', '').replace('\\u0000', '').replace(':','\033[0;0m: ').replace('<br>', '\n\033[1;31m').replace('DDD', '\033[1;31mDDD').replace('\\r', '').replace('<p>', '').replace('_', ' ')
