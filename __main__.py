@@ -1,15 +1,6 @@
 from src.utils.treeFiles import *;
 import os, subprocess;
 
-if "ANDROID_ARGUMENT" in os.environ:
-    try:
-        import android;
-        droid = android.Android();
-        droid.makeToast('foda');
-
-    except:
-        pass;
-
 try:
     if __name__ == '__main__':
         update = subprocess.check_output('git pull', shell=True);
@@ -22,12 +13,21 @@ except:
 
 functions = treePath('src/utils');
 
-functions['clear'](); functions['printLogo']();
+
+if "ANDROID_ARGUMENT" in os.environ:
+    try:
+        functions['toaskAndroid']();
+    except:
+        pass;
+
+functions['clear']();
+functions['printLogo']();
 
 CommandsList = treePath('src/commands', True);
 
 try:
 	import requests;
+    
 except:
     os.system('python3 -m pip install --upgrade pip');
     os.system('pip3 install requests');
