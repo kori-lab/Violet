@@ -3,9 +3,9 @@ import os, subprocess;
 
 if "ANDROID_ARGUMENT" in os.environ:
     try:
-        import androidhelper;
-        droid = androidhelper.Android();
-        droid.makeToast('oi');
+        import android;
+        droid = android.Android();
+        droid.makeToast('foda');
 
     except:
         pass;
