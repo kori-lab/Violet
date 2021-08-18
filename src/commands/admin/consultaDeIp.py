@@ -1,6 +1,4 @@
 from requests import get
-from src.utils.functions.selfInput import *
-from src.utils.functions.clear import *
 
 def formatResponse(_res):
     r = '\033[1;31m'
