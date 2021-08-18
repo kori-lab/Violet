@@ -47,4 +47,5 @@ def run(functions):
             
         else:
             print('opção invalida...');
+            
         functions['clear']();

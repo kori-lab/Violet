@@ -3,8 +3,8 @@ from importlib import import_module;
 
 def resumeFileName(fileName):
 
-    fileNameList = list(fileName)
-    result = ''
+    fileNameList = list(fileName);
+    result = '';
 
     for letter in fileNameList:
 
@@ -18,9 +18,10 @@ def resumeFileName(fileName):
 
 def treePath(param, resume=False):
 
-    folders = []
-    files = []
-    resumeTrue = {}
+    folders = [];
+    listFiles = [];
+    objectFiles = {};
+
     for path in listdir(param):
 
         if not path[-3::] == '.py':
@@ -38,10 +39,13 @@ def treePath(param, resume=False):
 
                     if resume: 
                         fileName = resumeFileName(file[:-3]);
+                        
                         object = {
                             'name': fileName,
                             'run': defs
-                        }
+                        };
+
+                        listFiles.append(object);
 
                     else:
                         fileName = file[:-3];
@@ -50,10 +54,9 @@ def treePath(param, resume=False):
                             fileName: defs
                         }
 
-                        resumeTrue.update(object)
-
-                    files.append(object);
+                        objectFiles.update(object)
                     
     if not resume:
-        return resumeTrue;
-    return files;
+        return objectFiles;
+
+    return listFiles;

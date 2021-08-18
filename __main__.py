@@ -1,9 +1,19 @@
 from src.utils.treeFiles import *;
 import os, subprocess;
 
+if "ANDROID_ARGUMENT" in os.environ:
+    try:
+        import androidhelper;
+        droid = androidhelper.Android();
+        droid.makeToast('oi');
+
+    except:
+        pass;
+
 try:
     if __name__ == '__main__':
-        update = subprocess.check_output('git pull', shell=True)
+        update = subprocess.check_output('git pull', shell=True);
+
 except:
     if os.path.exists('.git'):
             pass
@@ -12,8 +22,7 @@ except:
 
 functions = treePath('src/utils');
 
-functions['clear']();
-functions['printLogo']();
+functions['clear'](); functions['printLogo']();
 
 CommandsList = treePath('src/commands', True);
 
