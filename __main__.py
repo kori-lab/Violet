@@ -54,11 +54,11 @@ def CeckChoice(message):
     clear()
     if not choice.isdigit():
         printLogo();
-        return print('\nDigite números!')
+        return print('\n\t\t\tDigite números!')
 
     if int(choice) > len(CommandsList):
         printLogo();
-        return print('Digite um número da lista!')
+        return print('\n\t\t\tDigite um número da lista!')
 
     elif choice == '0':
         clear();
