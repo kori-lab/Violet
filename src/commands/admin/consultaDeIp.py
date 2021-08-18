@@ -12,8 +12,11 @@ def formatResponse(_res):
             "city" : "Cidade", "query" : "Ip"};
     
     for key in _res:
-        if key in values.keys(): message += f"{r}{values[key]}{c}: {_res[key]}\n"
-        else: message += f"{r}{key}{c}: {_res[key]}\n"
+        if key in values.keys(): 
+            message += f"{r}{values[key]}{c}: {_res[key]}\n";
+
+        else: 
+            message += f"{r}{key}{c}: {_res[key]}\n";
         
     return message.replace('_', ' ').replace('State of ', '');
 
