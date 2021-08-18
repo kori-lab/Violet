@@ -5,37 +5,34 @@ from src.utils.functions.clear import *
 def formatResponse(_res):
     r = '\033[1;31m'
     c = '\033[0;0m'
-    nome = r + _res['retorno'].nome + c
-    date = r + _res['retorno'].AnoNascimento + c
-    cpf = r + _res['retorno'].CPF + c
-    sexo = r + _res['retorno'].Sexo + c
 
-    if not nome:
-        _res = False;
-    else:
-        _res = f'CPF: {cpf}\nNome: {nome}\nAno de nascimento: {date}\nSexo: {sexo}'
-
-    return _res;
+    message = '';
+    values = {"country" : "Pais", "countryCode" : "Código do Pais", 
+            "region" : "Região", "regionName" : "Nome da Região", 
+            "city" : "Cidade", "query" : "Ip"};
+    
+    for key in _res:
+        if key in values.keys(): message += f"{r}{values[key]}{c}: {_res[key]}\n"
+        else: message += f"{r}{key}{c}: {_res[key]}\n"
+        
+    return message.replace('_', ' ').replace('State of ', '');
 
 def run(functions):
+
     repeat = True
+
     while repeat:
-        _num = functions['selfInput']('Qual é o cpf que deseja consultar?');
+        _num = functions['selfInput']('Qual é Ip que deseja consultar?');
         _num = _num.replace(' ', '').replace('-', '');
 
         try:
             functions['clear']();
-            _res = get(f"https://netinnbapi.000webhostapp.com/clientesnetin/api.php?cpf={_num}").json();
+            _res = get(f"http://ip-api.com/json/{_num}?fields=258047").json();
 
-            _res = formatResponse(_res);
-            if not _res:
-                print('Cpf não encontrado...');
-
-            else:
-                print(_res);
+            print(formatResponse(_res));
 
         except:
-            print('Cpf não encontrado...')
+            print('Ip incorreto ou não encontrado...\n')
             pass;
 
         choice = functions['selfInput']('\n\033[1;92m[1]\033[0;0m repetir\n\033[1;92m[2]\033[0;0m sair para menu\n');
