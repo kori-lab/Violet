@@ -1,5 +1,4 @@
-from src.utils.treeFiles import *;
-import os, subprocess;
+from src.utils.treeFiles import *; import os, subprocess; from sys import executable, argv;
 
 try:
     if __name__ == '__main__':
@@ -9,31 +8,22 @@ except:
     if os.path.exists('.git'):
             pass
     else:
-        print('Falta de repositório GIT local')
-
-functions = treePath('src/utils');
-
-
-if "ANDROID_ARGUMENT" in os.environ:
-    try:
-        functions['toaskAndroid']();
-    except:
-        pass;
-
-functions['clear']();
-functions['printLogo']();
-
-CommandsList = treePath('src/commands', True);
+        print('Falta de repositório GIT local');
 
 try:
 	import requests;
-    
+
 except:
     os.system('python3 -m pip install --upgrade pip');
     os.system('pip3 install requests');
 
-    functions['restart'].run()
+    os.execl(executable, executable, *argv);
 
+functions = treePath('src/utils');
+
+functions['clear'](); functions['printLogo']();
+
+CommandsList = treePath('src/commands', True);
 message = functions['mainSetMessage'](CommandsList);
 
 while True:
