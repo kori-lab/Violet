@@ -24,7 +24,7 @@ functions = treePath('src/utils');
 functions['clear'](); functions['printLogo']();
 
 CommandsList = treePath('src/commands', True);
-message = functions['mainSetMessage'](CommandsList);
+message = functions['mainSetMessage'](CommandsList, functions);
 
 while True:
     functions['mainChoices'](message, CommandsList, functions);

@@ -1,12 +1,10 @@
 from requests import get
 
 def formatResponse(_res):
-    r = '\033[1;31m'
-    c = '\033[0;0m'
-    nome = r + _res['retorno'].nome + c
-    date = r + _res['retorno'].AnoNascimento + c
-    cpf = r + _res['retorno'].CPF + c
-    sexo = r + _res['retorno'].Sexo + c
+    nome = _res['retorno'].nome
+    date = _res['retorno'].AnoNascimento
+    cpf = _res['retorno'].CPF
+    sexo = _res['retorno'].Sexo
 
     if not nome:
         _res = False;
@@ -36,8 +34,12 @@ def run(functions):
             print('Cpf não encontrado...')
             pass;
 
-        choice = functions['selfInput']('\n\033[1;92m[1]\033[0;0m repetir\n\033[1;92m[2]\033[0;0m sair para menu\n');
-
+        choice = functions['selfInput'](
+            functions['colorize'](
+                '\n:red:[::1:red:]:: repetir \n:red:[::2:red:]:: sair para menu\n'
+            )
+        );
+        
         if choice == '1':
             pass;
 

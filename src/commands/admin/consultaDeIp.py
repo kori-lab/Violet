@@ -1,8 +1,6 @@
 from requests import get
 
-def formatResponse(_res):
-    r = '\033[1;31m'
-    c = '\033[0;0m'
+def formatResponse(_res, functions):
 
     message = '';
     values = {"country" : "Pais", "countryCode" : "Código do Pais", 
@@ -10,12 +8,12 @@ def formatResponse(_res):
             "city" : "Cidade", "query" : "Ip"};
     
     for key in _res:
-        if key in values.keys(): 
-            message += f"{r}{values[key]}{c}: {_res[key]}\n";
-
-        else: 
-            message += f"{r}{key}{c}: {_res[key]}\n";
-        
+        if key in values.keys():
+            message += functions['colorize'](f":red:{values[key]}::: {_res[key]}\n");
+    
+        else:
+            message += functions['colorize'](f":red:{key}::: {_res[key]}\n");
+    
     return message.replace('_', ' ').replace('State of ', '');
 
 def run(functions):
@@ -30,14 +28,18 @@ def run(functions):
             functions['clear']();
             _res = get(f"http://ip-api.com/json/{_num}?fields=258047").json();
 
-            print(formatResponse(_res));
+            print(formatResponse(_res, functions));
 
         except:
             print('Ip incorreto ou não encontrado...\n')
             pass;
 
-        choice = functions['selfInput']('\n\033[1;92m[1]\033[0;0m repetir\n\033[1;92m[2]\033[0;0m sair para menu\n');
-
+        choice = functions['selfInput'](
+            functions['colorize'](
+                '\n:red:[::1:red:]:: repetir \n:red:[::2:red:]:: sair para menu\n'
+            )
+        );
+        
         if choice == '1':
             pass;
 
