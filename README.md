@@ -1,4 +1,4 @@
-# Violet
+<h2 align="center">🌹 Violet</h2>
 Uma simples aplicação com sistema de menus, tendo o intuito de ser uma caixa de ferramentas.
 
 <h2 align="center">🖥 Instalação</h2>
