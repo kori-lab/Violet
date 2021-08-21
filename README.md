@@ -17,4 +17,5 @@ $ python .
 ```
 
 <h2 align="center">🔎 Api de consultas</h2>
-A api de consultas é pega e disponibilizada pelo [Kiny](https://github.com/Kiny-Kiny).
+
+A api de consultas é pega e disponibilizada pelo [Kiny](https://github.com/Kiny-Kiny), normalmente ela vem de terceiros por isso não é nossa responsabilidade mante-la online... Sempre tentamos trazer a melhor que encontramos.
