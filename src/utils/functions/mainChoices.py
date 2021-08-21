@@ -1,22 +1,44 @@
-from sys import exit
+import sys
 
-def run(message, CommandsList, functions):
+def organizationChoice(choice, menu, functions):
+    listCommands = menu[list(menu.keys())[int(choice)-1]];
+    nameMenu = list(menu.keys())[int(choice) - 1]
+    
+    return listCommands, nameMenu;
 
+def run(menu, functions):
+    optionsMenu = menu.keys()
+    
+    message = functions['mainSetMessage'](optionsMenu, functions);
+    
     choice = functions['selfInput'](message);
     functions['clear']();
 
     if not choice.isdigit():
         functions['printLogo']();
-        return print('\n\t\t\tDigite números!');
+        return print('\t\tDigite números!');
 
-    if int(choice) > len(CommandsList):
+    if int(choice) > len(menu):
         functions['printLogo']();
-        return print('\n\t\t\tDigite um número da lista!');
+        return print('\t\tDigite um número da lista!');
 
     elif choice == '0':
         functions['clear']();
-        exit();
+        sys.exit();
 
     else:
-        CommandsList[int(choice) - 1]['run'](functions);
+        CommandsList, nameMenu = organizationChoice(choice, menu, functions);
+        nameMenu = functions['colorize'](f'\t\t\t:red:[:: \u001b[1m{nameMenu.title()} :red:]::');
+        
+        functions['printLogo']();
+        print(nameMenu);
+        
+        exit = False; # \033[;1m
+        while not exit:
+            choice = functions['selectChoice'](CommandsList, functions, nameMenu)
+
+            if choice == '99':
+                functions['clear']();
+                exit = True;
+            
         functions['printLogo']();

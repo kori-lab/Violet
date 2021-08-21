@@ -18,18 +18,17 @@ def resumeFileName(fileName):
 
 def treePath(param, resume=False):
 
-    folders = [];
+    folders = {};
     listFiles = [];
     objectFiles = {};
 
     for path in listdir(param):
 
         if not path[-3::] == '.py':
-            
-            folders.append(path);
+            # folders.append(path);
+            folders.setdefault(path, [])
 
             for file in listdir(param + '/' + path):
-
                 if file[-3::] == '.py':
                     caminho = f'{param.replace("/", ".")}.{path}.{file[:-3]}'
                     
@@ -37,7 +36,8 @@ def treePath(param, resume=False):
                     fileName = ''
                     object = {}
 
-                    if resume: 
+                    if resume:
+                        
                         fileName = resumeFileName(file[:-3]);
                         
                         object = {
@@ -45,6 +45,7 @@ def treePath(param, resume=False):
                             'run': defs
                         };
 
+                        folders[path].append(object);
                         listFiles.append(object);
 
                     else:
@@ -55,8 +56,9 @@ def treePath(param, resume=False):
                         }
 
                         objectFiles.update(object)
-                    
+    
     if not resume:
         return objectFiles;
 
-    return listFiles;
+    if resume:
+        return folders;
