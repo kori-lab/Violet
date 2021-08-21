@@ -1,22 +1,29 @@
-import os, sys;
+import os, sys, socket;
+from requests import get
+
+hostname = socket.gethostname()
+ip_interno = socket.gethostbyname(hostname)
+ip_externo = get('https://api.ipify.org').text
 
 pid = os.getpid();
 
-message = f'''
-            Nome de usuário: {os.getlogin()}
-            Sistema: {sys.platform}
-            Byteorder: {sys.byteorder}
-            Versão da api: {sys.api_version}
-            ''';
-
-try:
-    apiAndroid = sys.getandroidapilevel();
-    message += f'Android: {apiAndroid}\n';
-
-except:
-    pass;
-
 def run(functions: dict) -> None:
+
+    message = functions['colorize'](f'''
+            :r:Nome de usuário::: {os.getlogin()}
+            :r:Sistema::: {sys.platform}
+            :r:Hostname::: {hostname}
+            :r:Ip interno::: {ip_interno}
+            :r:Ip externo::: {ip_externo}
+            :r:Versão da api::: {sys.api_version}
+            ''');
+
+    try:
+        apiAndroid = sys.getandroidapilevel();
+        message += functions['colorize'](f':r:Versão da api android::: {apiAndroid}\n');
+
+    except:
+        pass;
 
     exit = False;
     while not exit:

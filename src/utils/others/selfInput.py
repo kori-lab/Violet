@@ -3,4 +3,4 @@ C = '\033[0;0m';
 
 def run(text: str) -> str:
     print(text);
-    return input(f'{R}>{C} ');
+    return input(f'{R}は >{C} ');
