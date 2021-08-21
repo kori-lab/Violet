@@ -1,14 +1,15 @@
 from requests import get
 
-def formatResponse(_res):
-    _res = _res.replace('\n', '').replace('\\u0000', '').replace(':','\033[0;0m: ').replace('<br>', '\n\033[1;31m').replace('DDD', '\033[1;31mDDD').replace('\\r', '').replace('<p>', '').replace('_', ' ')
-    _res = '\033[1;31m' + _res;
+def formatResponse(_res: str) -> str:
+    _res = _res.replace('\n', '').replace('\\u0000', '').replace(':','\033[0;0m: ').replace('<br>', '\n\033[1;31m').replace('DDD', '\033[1;31mDDD').replace('\\r', '').replace('<p>', '').replace('_', ' ');
+    _res = '\033[1;31m\n' + _res;
+
     return _res.capitalize();
 
-def run(functions):
-    repeat = True
-    
-    while repeat:
+def run(functions: dict) -> None:
+
+    exit = False;
+    while not exit:
         _num = functions['selfInput']('\nQual é o número que deseja consultar?\n');
         
         if len(_num) < 9:
@@ -40,11 +41,11 @@ def run(functions):
         );
 
         if choice == '1':
-            pass
+            pass;
 
-        if choice == '2':
+        elif choice == '2':
             functions['clear']();
-            repeat = False;
+            exit = True;
             
         else:
             functions['clear']();

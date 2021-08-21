@@ -1,4 +1,4 @@
-import os
+import os;
 
-def run():
+def run() -> None:
     os.system('cls' if os.name == 'nt' else 'clear');

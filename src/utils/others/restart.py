@@ -1,6 +1,6 @@
-from os import execl
-from sys import executable, argv
+from os import execl;
+from sys import executable, argv;
 
-def run():
+def run() -> None:
     python = executable;
     execl(python, python, *argv);

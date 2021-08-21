@@ -1,12 +1,13 @@
 from requests import get
 
-def formatResponse(_res, functions):
-
+def formatResponse(_res: dict, functions: dict) -> str:
     message = '';
-    values = {"country" : "Pais", "countryCode" : "Código do Pais", 
-            "region" : "Região", "regionName" : "Nome da Região", 
-            "city" : "Cidade", "query" : "Ip"};
-    
+    values = {
+        "country": "Pais", "countryCode": "Código do Pais", 
+        "region": "Região", "regionName": "Nome da Região", 
+        "city": "Cidade", "query": "Ip"
+    };
+
     for key in _res:
         if key in values.keys():
             message += functions['colorize'](f":red:{values[key]}::: {_res[key]}\n");
@@ -16,11 +17,10 @@ def formatResponse(_res, functions):
     
     return message.replace('_', ' ').replace('State of ', '');
 
-def run(functions):
+def run(functions: dict) -> None:
 
-    repeat = True
-
-    while repeat:
+    exit = False;
+    while not exit:
         _num = functions['selfInput']('Qual é Ip que deseja consultar?');
         _num = _num.replace(' ', '').replace('-', '');
 
@@ -31,7 +31,7 @@ def run(functions):
             print(formatResponse(_res, functions));
 
         except:
-            print('Ip incorreto ou não encontrado...\n')
+            print('Ip incorreto ou não encontrado...\n');
             pass;
 
         choice = functions['selfInput'](
@@ -45,7 +45,7 @@ def run(functions):
 
         elif choice == '2':
             functions['clear']();
-            repeat = False;
+            exit = True;
             
         else:
             print('opção invalida...');

@@ -1,15 +1,13 @@
-import sys
+import sys;
 
-def organizationChoice(choice, menu, functions):
+def organizationChoice(choice: str, menu) -> tuple:
     listCommands = menu[list(menu.keys())[int(choice)-1]];
-    nameMenu = list(menu.keys())[int(choice) - 1]
+    nameMenu = list(menu.keys())[int(choice) - 1];
     
     return listCommands, nameMenu;
 
-def run(menu, functions):
-    optionsMenu = menu.keys()
-    
-    message = functions['mainSetMessage'](optionsMenu, functions);
+def run(menu, functions: dict) -> None:
+    message = functions['mainSetMessage'](menu.keys(), functions);
     
     choice = functions['selfInput'](message);
     functions['clear']();
@@ -33,9 +31,9 @@ def run(menu, functions):
         functions['printLogo']();
         print(nameMenu);
         
-        exit = False; # \033[;1m
+        exit = False;
         while not exit:
-            choice = functions['selectChoice'](CommandsList, functions, nameMenu)
+            choice = functions['selectChoice'](CommandsList, functions, nameMenu);
 
             if choice == '99':
                 functions['clear']();

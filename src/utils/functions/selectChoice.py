@@ -1,4 +1,4 @@
-def run(CommandsList, functions, nameMenu):
+def run(CommandsList, functions: dict, nameMenu: str) -> None:
 
     message = functions['mainSetMessage'](CommandsList, functions)
 
@@ -11,7 +11,7 @@ def run(CommandsList, functions, nameMenu):
         
         return print('\n\t\t\tDigite números!');
 
-    if int(choice) > len(CommandsList) and choice != '99':
+    elif int(choice) > len(CommandsList) and choice != '99':
         functions['printLogo']();
         print(nameMenu);
         

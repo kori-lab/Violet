@@ -1,29 +1,32 @@
-from requests import get
+from requests import get;
 
-def formatResponse(_res):
-    nome = _res['retorno'].nome
-    date = _res['retorno'].AnoNascimento
-    cpf = _res['retorno'].CPF
-    sexo = _res['retorno'].Sexo
+def formatResponse(_res: dict) -> str:
+    nome = _res['retorno'].nome;
+    date = _res['retorno'].AnoNascimento;
+    cpf = _res['retorno'].CPF;
+    sexo = _res['retorno'].Sexo;
 
     if not nome:
         _res = False;
+
     else:
-        _res = f'CPF: {cpf}\nNome: {nome}\nAno de nascimento: {date}\nSexo: {sexo}'
+        _res = f'CPF: {cpf}\nNome: {nome}\nAno de nascimento: {date}\nSexo: {sexo}';
 
     return _res;
 
-def run(functions):
-    repeat = True
-    while repeat:
+def run(functions: dict) -> None:
+
+    exit = False;
+    while not exit:
         _num = functions['selfInput']('Qual é o cpf que deseja consultar?');
         _num = _num.replace(' ', '').replace('-', '');
 
         try:
             functions['clear']();
-            _res = get(f"https://netinnbapi.000webhostapp.com/clientesnetin/api.php?cpf={_num}").json();
 
+            _res = get(f"https://netinnbapi.000webhostapp.com/clientesnetin/api.php?cpf={_num}").json();
             _res = formatResponse(_res);
+
             if not _res:
                 print('Cpf não encontrado...');
 
@@ -31,7 +34,7 @@ def run(functions):
                 print(_res);
 
         except:
-            print('Cpf não encontrado...')
+            print('Cpf não encontrado, api não deu nenhuma resposta.');
             pass;
 
         choice = functions['selfInput'](

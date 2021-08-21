@@ -1,7 +1,7 @@
 from os import listdir;
 from importlib import import_module;
 
-def resumeFileName(fileName):
+def resumeFileName(fileName: str) -> str:
 
     fileNameList = list(fileName);
     result = '';
@@ -16,28 +16,25 @@ def resumeFileName(fileName):
 
     return result.capitalize();
 
-def treePath(param, resume=False):
+def treePath(param: str, resume: str = False) -> dict:
 
     folders = {};
-    listFiles = [];
     objectFiles = {};
 
     for path in listdir(param):
 
         if not path[-3::] == '.py':
-            # folders.append(path);
-            folders.setdefault(path, [])
+            folders.setdefault(path, []);
 
             for file in listdir(param + '/' + path):
                 if file[-3::] == '.py':
-                    caminho = f'{param.replace("/", ".")}.{path}.{file[:-3]}'
+                    caminho = f'{param.replace("/", ".")}.{path}.{file[:-3]}';
                     
-                    defs = import_module(caminho).run
-                    fileName = ''
-                    object = {}
+                    defs = import_module(caminho).run;
+                    fileName = '';
+                    object = {};
 
                     if resume:
-                        
                         fileName = resumeFileName(file[:-3]);
                         
                         object = {
@@ -46,16 +43,15 @@ def treePath(param, resume=False):
                         };
 
                         folders[path].append(object);
-                        listFiles.append(object);
 
                     else:
                         fileName = file[:-3];
 
                         object = {
                             fileName: defs
-                        }
+                        };
 
-                        objectFiles.update(object)
+                        objectFiles.update(object);
     
     if not resume:
         return objectFiles;
