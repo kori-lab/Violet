@@ -15,8 +15,8 @@ def resumeFileName(fileName: str) -> str:
             result += letter;
 
     return result.capitalize();
-
-def treePath(param: str, resume: str = False) -> dict:
+Vector = list[float]
+def treePath(param: str, resume: bool = False) -> dict:
 
     folders = {};
     objectFiles = {};
