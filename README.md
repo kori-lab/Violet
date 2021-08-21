@@ -1,11 +1,16 @@
-<h2 align="center">🌹 Violet</h2>
+# 🌹 Violet
+
 Uma simples aplicação com sistema de menus, tendo o intuito de ser uma caixa de ferramentas.
 
 <h2 align="center">🖥 Instalação</h2>
 
 Para você executar a **Violet** é nescessario ter o python instalado, baixe python clicando [Aqui](https://www.python.org/downloads/)!
 
-Depois de baixar e instalar o python você pode baixar a **Violet** diretamente do github com os seguintes comandos:
+Depois de baixar e instalar o python você pode baixar a Violet diretamente do github com os seguintes comandos:
+
+<details>
+  <summary> <b> comandos </b> </summary>
+  <br>
 
 ```
 💻 Termux
@@ -15,6 +20,9 @@ $ git clone https://github.com/kori-lab/Violet
 $ cd Violet
 $ python .
 ```
+  
+  </br>
+</details>
 
 <h2 align="center">🔎 Api de consultas</h2>
 
