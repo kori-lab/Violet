@@ -4,21 +4,21 @@ Uma simples aplicação com sistema de menus, tendo o intuito de ser uma caixa d
 
 <h2 align="center">🖥 Instalação</h2>
 
-Para você executar a **Violet** é nescessario ter o python instalado, baixe python clicando [Aqui](https://www.python.org/downloads/)!
+Para você executar a **Violet** é nescessario ter o Python instalado, baixe Python clicando [aqui](https://www.python.org/downloads/)!
 
-Depois de baixar e instalar o python você pode baixar a Violet diretamente do github com os seguintes comandos:
+Depois de baixar e instalar o python você pode baixar a **Violet** diretamente do Github com os seguintes comandos:
 
 <details>
   <summary> <b> comandos </b> </summary>
   <br>
 
 ```
+
 💻 Termux
 $ pkg upgrade && pkg update -y
 $ pkg install git python -y
 $ git clone https://github.com/kori-lab/Violet
-$ cd Violet
-$ python .
+
 ```
   
   </br>
