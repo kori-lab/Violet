@@ -25,7 +25,7 @@ def run(menu, functions: dict) -> None:
         sys.exit();
 
     else:
-        CommandsList, nameMenu = organizationChoice(choice, menu, functions);
+        CommandsList, nameMenu = organizationChoice(choice, menu);
         nameMenu = functions['colorize'](f'\t\t\t:red:[:: \u001b[1m{nameMenu.title()} :red:]::');
         
         functions['printLogo']();

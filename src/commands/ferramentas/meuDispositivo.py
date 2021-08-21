@@ -6,7 +6,7 @@ message = f'''
             Nome de usuário: {os.getlogin()}
         ''';
 
-def run(functions):
+def run(functions: dict) -> None:
 
     exit = False;
     while not exit:
