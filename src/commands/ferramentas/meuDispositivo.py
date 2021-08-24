@@ -1,9 +1,9 @@
 import os, sys, socket;
-from requests import get
+from requests import get;
 
-hostname = socket.gethostname()
-ip_interno = socket.gethostbyname(hostname)
-ip_externo = get('https://api.ipify.org').text
+hostname = socket.gethostname();
+ip_interno = socket.gethostbyname(hostname);
+ip_externo = get('https://api.ipify.org').text;
 
 pid = os.getpid();
 
