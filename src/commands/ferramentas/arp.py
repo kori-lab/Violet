@@ -45,7 +45,7 @@ def run(functions: dict) -> None:
 					# https://macvendors.co/api/{item['mac']}/json
 					# https://api.macaddress.io/v1?apiKey=at_pfEl13757ki8H5YM1VPaW9cV7sLyf&output=json&search={item['mac']}
 
-					res = get(f"https://api.macaddress.io/v1?apiKey=at_pfEl13757ki8H5YM1VPaW9cV7sLyf&output=json&search={item['mac']}").json()
+					res = get(f"https://macvendors.co/api/{item['mac']}/json").json()
 					for resItem in res:
 						if type(res[resItem]) == dict:
 							message += functions['colorize'](f" ∟ :c:{resItem}::\n")
