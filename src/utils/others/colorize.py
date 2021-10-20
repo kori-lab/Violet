@@ -1,6 +1,3 @@
-from typing import Generator
-
-
 def run (text: str, optionReturn=False) -> tuple[str, None]:
   colorList = {
         ("black"                    , "b"   ,  "preto"              , "p"   ) : "\u001b[30m"  ,
