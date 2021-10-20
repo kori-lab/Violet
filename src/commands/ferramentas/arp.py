@@ -5,7 +5,7 @@ def run(functions: dict) -> None:
 		
 		print("aguarde... pode demorar alguns segundos")
 		message = ""
-		output = str(subprocess.getstatusoutput('arp -a')).replace("?", "").replace("(", "").replace(")", "").replace("\\t", "").replace("\\r", "").replace("ether", "").replace("wlan0", "").replace("din\\x83mico", "").replace("est\\xa0tico", "").split("\\n")
+		output = str(subprocess.getstatusoutput('arp -a' if os.name == 'nt' else 'arp')).replace("?", "").replace("(", "").replace(")", "").replace("at", "").replace("\\t", "").replace("\\r", "").replace("ether", "").replace("wlan0", "").replace("din\\x83mico", "").replace("est\\xa0tico", "").split("\\n")
 		
 		if not output[0][2].replace(" ", "").isdigit():
 			output.pop(0)
@@ -51,7 +51,7 @@ def run(functions: dict) -> None:
 							message += functions['colorize'](f" ∟ :c:{resItem}::\n")
 							for a in res[resItem]:
 									if res[resItem][a]:
-										if res[resItem][a] == "no result":
+										if resItem == "error":
 											try:
 												resO = get("https://macvendors.co/api/{item['mac']}/json").json()
 												print(resO)
