@@ -5,13 +5,13 @@ def run(functions: dict) -> None:
 		
 		print("aguarde... pode demorar alguns segundos")
 		message = ""
-		output = str(subprocess.getstatusoutput('arp -a' if os.name == 'nt' else 'arp')).replace("\\t", "").replace("\\r", "").replace("ether", "").replace("wlan0", "").replace("din\\x83mico", "").replace("est\\xa0tico", "").split("\\n")
+		output = str(subprocess.getstatusoutput('arp -a')).replace("?", "").replace("(", "").replace(")", "").replace("\\t", "").replace("\\r", "").replace("ether", "").replace("wlan0", "").replace("din\\x83mico", "").replace("est\\xa0tico", "").split("\\n")
 		
-		if not output[0].isdigit():
+		if not output[0][2].replace(" ", "").isdigit():
 			output.pop(0)
-		if not output[1].isdigit():
+		if not output[1][2].replace(" ", "").isdigit():
 			output.pop(1)
-		if not output[2].isdigit():
+		if not output[2][2].replace(" ", "").isdigit():
 			output.pop(2)
 
 		box = []
