@@ -5,7 +5,7 @@ def run(functions: dict) -> None:
 		
 		print("aguarde... pode demorar alguns segundos")
 		message = ""
-		output = str(subprocess.getstatusoutput("arp -a")).replace("\\r", "").replace("din\\x83mico", "").replace("est\\xa0tico", "").split("\\n")
+		output = str(subprocess.getstatusoutput('arp -a' if os.name == 'nt' else 'arp')).replace("\\r", "").replace("din\\x83mico", "").replace("est\\xa0tico", "").split("\\n")
 		output.pop(0)
 		output.pop(0)
 		output.pop(0)
