@@ -5,7 +5,7 @@ def run(functions: dict) -> None:
 		
 		print("aguarde... pode demorar alguns segundos")
 		message = ""
-		output = str(subprocess.getstatusoutput('arp -a' if os.name == 'nt' else 'arp')).replace("\\r", "").replace("ether", "").replace("wlan0", "").replace("din\\x83mico", "").replace("est\\xa0tico", "").split("\\n")
+		output = str(subprocess.getstatusoutput('arp -a' if os.name == 'nt' else 'arp')).replace("\\t", "").replace("\\r", "").replace("ether", "").replace("wlan0", "").replace("din\\x83mico", "").replace("est\\xa0tico", "").split("\\n")
 		output.pop(0)
 		output.pop(0)
 		output.pop(0)
@@ -29,8 +29,8 @@ def run(functions: dict) -> None:
 					if mac: mac_check = True
 
 			box.append({
-				"ip": ip,
-				"mac": mac.replace("dinƒmico", "").replace("')", "")
+				"ip": ip.replace(" ", ""),
+				"mac": mac.replace("dinƒmico", "").replace("')", "").replace(" ", "")
 			})
 
 		message += functions['colorize'](f":b:[+]:: achei mais de :m:{len(box)}:: conexões na rede conectada\n")
