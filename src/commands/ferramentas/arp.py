@@ -6,9 +6,13 @@ def run(functions: dict) -> None:
 		print("aguarde... pode demorar alguns segundos")
 		message = ""
 		output = str(subprocess.getstatusoutput('arp -a' if os.name == 'nt' else 'arp')).replace("\\t", "").replace("\\r", "").replace("ether", "").replace("wlan0", "").replace("din\\x83mico", "").replace("est\\xa0tico", "").split("\\n")
-		output.pop(0)
-		output.pop(0)
-		output.pop(0)
+		
+		if not output[0].isdigit():
+			output.pop(0)
+		if not output[1].isdigit():
+			output.pop(1)
+		if not output[2].isdigit():
+			output.pop(2)
 
 		box = []
 		for i, v in enumerate(output):
