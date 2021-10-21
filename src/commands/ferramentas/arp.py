@@ -35,49 +35,53 @@ def run(functions: dict) -> None:
 				"mac": mac.replace("dinƒmico", "").replace("')", "").replace(" ", "")
 			})
 
+		generic = 0
+		box = sorted(box, key=lambda k: k['ip']) 
 		for item in box:
 			if item['ip'][0].isdigit():
-				
-				message += functions['colorize'](f"\n\n:blue:Ip::: {item['ip']}\n:blue:Mac::: {item['mac']}\n:green:Api::: \n")
-				try:
-					# https://macvendors.co/api/{item['mac']}/json
-					# https://api.macaddress.io/v1?apiKey=at_pfEl13757ki8H5YM1VPaW9cV7sLyf&output=json&search={item['mac']}
+				if "(" in item['mac'] or not item['mac']:
+					generic += 1
+				else:
+					message += functions['colorize'](f"\n\n:blue:Ip::: {item['ip']}\n:blue:Mac::: {item['mac']}\n:green:Api::: \n")
+					try:
+						# https://macvendors.co/api/{item['mac']}/json
+						# https://api.macaddress.io/v1?apiKey=at_pfEl13757ki8H5YM1VPaW9cV7sLyf&output=json&search={item['mac']}
 
-					res = get(f"https://macvendors.co/api/{item['mac']}/json").json()
-					for resItem in res:
-						if type(res[resItem]) == dict:
-							message += functions['colorize'](f" ∟ :c:{resItem}::\n")
-							for a in res[resItem]:
-									if res[resItem][a]:
-										if resItem == "error":
-											try:
-												resO = get("https://macvendors.co/api/{item['mac']}/json").json()
-												print(resO)
-												for resItemZ in resO:
-													if type(res[resItemZ]) == dict:
-														message += functions['colorize'](f" ∟ :c:{resItemZ}::")
-														for ab in res[resItemZ]:
-																if resO[resItemZ][ab]:
-																		message +=  functions['colorize'](f"  :c:{ab}::: {resO[resItemZ][ab]}\n")
-													else: 
-														message += functions['colorize'](f" ∟ :bg:{resItemZ}::: {resO[resItemZ]}\n")
-											except:
-												pass;
+						res = get(f"https://macvendors.co/api/{item['mac']}/json").json()
+						for resItem in res:
+							if type(res[resItem]) == dict:
+								message += functions['colorize'](f" ∟ :c:{resItem}::\n")
+								for a in res[resItem]:
+										if res[resItem][a]:
+											if resItem == "error":
+												try:
+													resO = get("https://macvendors.co/api/{item['mac']}/json").json()
+													print(resO)
+													for resItemZ in resO:
+														if type(res[resItemZ]) == dict:
+															message += functions['colorize'](f" ∟ :c:{resItemZ}::")
+															for ab in res[resItemZ]:
+																	if resO[resItemZ][ab]:
+																			message +=  functions['colorize'](f"  :c:{ab}::: {resO[resItemZ][ab]}\n")
+														else: 
+															message += functions['colorize'](f" ∟ :bg:{resItemZ}::: {resO[resItemZ]}\n")
+												except:
+													pass;
 
-										else:
-											message +=  functions['colorize'](f"  :c:{a}::: {res[resItem][a]}\n")
-						else: 
-							message += functions['colorize'](f" ∟ :bg:{resItem}::: {res[resItem]}\n")
+											else:
+												message +=  functions['colorize'](f"  :c:{a}::: {res[resItem][a]}\n")
+							else: 
+								message += functions['colorize'](f" ∟ :bg:{resItem}::: {res[resItem]}\n")
 
-				except:
-						pass;
+					except:
+							pass;
 
 		exit = False;
 		while not exit:
 				functions['clear']();
 
 				try:
-						message += functions['colorize'](f"\n:c:[+]:: achei mais de :m:{len(box)}:: conexões na rede conectada\n")
+						message += functions['colorize'](f"\n:c:[+]:: achei mais de :m:{len(box)}:: conexões na rede conectada e :m:{generic}:: são genericas\n")
 						print(message);
 						
 				except:
