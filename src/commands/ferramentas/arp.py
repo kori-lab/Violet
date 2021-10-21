@@ -8,15 +8,9 @@ def run(functions: dict) -> None:
 		output = str(subprocess.getstatusoutput('arp -a' if os.name == 'nt' else 'arp')).replace("?", "").replace("(", "").replace(")", "").replace("at", "").replace("\\t", "").replace("\\r", "").replace("ether", "").replace("wlan0", "").replace("din\\x83mico", "").replace("est\\xa0tico", "").split("\\n")
 		
 		for it in output:
-			import time
-			print(it)
-			
 			if it:
 				if not it.replace(" ", "")[2].isdigit():
 					output.remove(it)
-					print("removido")
-
-			time.sleep(3)
 
 		box = []
 		for i, v in enumerate(output):
