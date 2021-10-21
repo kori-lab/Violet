@@ -7,12 +7,16 @@ def run(functions: dict) -> None:
 		message = ""
 		output = str(subprocess.getstatusoutput('arp -a' if os.name == 'nt' else 'arp')).replace("?", "").replace("(", "").replace(")", "").replace("at", "").replace("\\t", "").replace("\\r", "").replace("ether", "").replace("wlan0", "").replace("din\\x83mico", "").replace("est\\xa0tico", "").split("\\n")
 		
-		if not output[0][1].replace(" ", "").isdigit():
-			output.pop(0)
-		if not output[1][1].replace(" ", "").isdigit():
-			output.pop(1)
-		if not output[2][1].replace(" ", "").isdigit():
-			output.pop(2)
+		for it in output:
+			import time
+			print(it)
+			
+			if it:
+				if not it.replace(" ", "")[2].isdigit():
+					output.remove(it)
+					print("removido")
+
+			time.sleep(3)
 
 		box = []
 		for i, v in enumerate(output):
